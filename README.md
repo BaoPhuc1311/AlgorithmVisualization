@@ -4,6 +4,7 @@
 This project simplifies complex algorithms through interactive visualizations, making them easier for beginners to understand. The implemented algorithms include:
 - Depth-First Search (DFS)
 - Breadth-First Search (BFS)
+- Dijkstra
 - (...)
 
 The goal is to make learning algorithms more engaging through graphical representations.

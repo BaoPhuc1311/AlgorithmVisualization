@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from bfs import BFSVisualization
+from dijkstra import DijkstraVisualization
 
 class AlgorithmVisualizationApp:
     def __init__(self, root):
@@ -17,7 +17,7 @@ class AlgorithmVisualizationApp:
         self.algorithm_label = tk.Label(root, text="Select Algorithm:", font=("Arial", 12), bg=self.bg_color, fg=self.text_color)
         self.algorithm_label.pack(pady=5)
 
-        self.algorithms = ["BFS"]
+        self.algorithms = ["Dijkstra"]
         self.algorithm_var = tk.StringVar()
 
         self.algorithm_combobox = ttk.Combobox(root, textvariable=self.algorithm_var, values=self.algorithms, state="readonly", font=("Arial", 12), width=20, justify="center")
@@ -48,7 +48,7 @@ class AlgorithmVisualizationApp:
         self.canvas = tk.Canvas(self.canvas_frame, bg=self.canvas_bg)
         self.canvas.pack(fill="both", expand=True)
 
-        self.bfs_vis = None
+        self.dijkstra_vis = None
 
     def set_theme(self):
         if self.dark_mode:
@@ -87,30 +87,30 @@ class AlgorithmVisualizationApp:
 
     def show_visualization(self, event):
         algo = self.algorithm_var.get()
-        if algo == "BFS":
+        if algo == "Dijkstra":
             self.canvas.delete("all")
-            self.bfs_vis = BFSVisualization(self.canvas)
-            self.bfs_vis.draw_graph()
+            self.dijkstra_vis = DijkstraVisualization(self.canvas)
+            self.dijkstra_vis.draw_graph()
 
     def start_visualization(self):
-        if self.bfs_vis:
-            self.bfs_vis.start_bfs()
+        if self.dijkstra_vis:
+            self.dijkstra_vis.start_dijkstra()
 
     def toggle_pause(self):
-        if self.bfs_vis:
+        if self.dijkstra_vis:
             self.is_paused = not self.is_paused
             if self.is_paused:
                 self.pause_button.config(text="Continue")
-                self.bfs_vis.pause_bfs()
+                self.dijkstra_vis.pause_dijkstra()
             else:
                 self.pause_button.config(text="Pause")
-                self.bfs_vis.continue_bfs()
+                self.dijkstra_vis.continue_dijkstra()
 
     def reset_visualization(self):
-        if self.bfs_vis:
+        if self.dijkstra_vis:
             self.is_paused = False
             self.pause_button.config(text="Pause")
-            self.bfs_vis.reset_bfs()
+            self.dijkstra_vis.reset_dijkstra()
 
 if __name__ == "__main__":
     root = tk.Tk()
